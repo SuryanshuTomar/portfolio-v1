@@ -23,11 +23,10 @@ export interface ControlsType {
 	label: string;
 }
 
-export type Controls = Record<string, ControlsType[]>
+export type Controls = Record<string, ControlsType[]>;
 
 export interface FormDataType {
-	heading: string | number | readonly string[] | undefined;
-	summary: string | number | readonly string[] | undefined;
+	[key: string]: string | number | readonly string[] | undefined;
 }
 
 export interface FormControlsType {
