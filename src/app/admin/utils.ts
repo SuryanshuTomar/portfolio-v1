@@ -4,6 +4,7 @@ import AdminEducationView from "@/components/admin-view/education";
 import AdminExperienceView from "@/components/admin-view/experience";
 import AdminHomeView from "@/components/admin-view/home";
 import AdminProjectsView from "@/components/admin-view/projects";
+import type { MenuItem } from "@/Types";
 
 export const menuItems: MenuItem[] = [
 	{

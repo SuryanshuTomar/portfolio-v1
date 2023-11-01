@@ -1,4 +1,6 @@
-type MenuLabels =
+import type { Dispatch, HTMLInputTypeAttribute, SetStateAction } from "react";
+
+export type MenuLabels =
 	| "Home"
 	| "About"
 	| "Experience"
@@ -6,10 +8,30 @@ type MenuLabels =
 	| "Projects"
 	| "Contact";
 
-type MenuIds = Lowercase<MenuLabels>;
+export type MenuIds = Lowercase<MenuLabels>;
 
-interface MenuItem {
+export interface MenuItem {
 	id: MenuIds;
 	label: MenuLabels;
-	component: React.FC;
+	component: React.FC<FormControlsType>;
+}
+
+export interface ControlsType {
+	name: string;
+	placeholder: string;
+	type: HTMLInputTypeAttribute;
+	label: string;
+}
+
+export type Controls = Record<string, ControlsType[]>
+
+export interface FormDataType {
+	heading: string | number | readonly string[] | undefined;
+	summary: string | number | readonly string[] | undefined;
+}
+
+export interface FormControlsType {
+	controls?: ControlsType[];
+	formData: FormDataType;
+	setFormData: Dispatch<SetStateAction<FormDataType>>;
 }
