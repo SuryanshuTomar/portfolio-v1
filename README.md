@@ -39,5 +39,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 Packages Used - 
 @emotion/react @emotion/styled @fullhuman/postcss-purgecss @mui/lab @mui/material bcryptjs framer-motion mongoose react-slick react-scroll
 
-Types Package -
-@types/bcryptjs @types/react-slick @types/react-scroll
+Dev Package -
+@types/bcryptjs @types/react-slick @types/react-scroll @typescript-eslint/eslint-plugin eslint-plugin-import
