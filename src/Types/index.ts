@@ -21,6 +21,9 @@ export interface ControlsType {
 	placeholder: string;
 	type: HTMLInputTypeAttribute;
 	label: string;
+	min?: number;
+	max?: number;
+	step?: number
 }
 
 export type Controls = Record<string, ControlsType[]>;

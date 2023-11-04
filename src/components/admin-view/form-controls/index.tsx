@@ -19,6 +19,9 @@ export default function FormControls(props: FormControlsType) {
 				name={controlItem.name}
 				id={controlItem.name}
 				placeholder={controlItem.placeholder}
+				min={controlItem.min}
+				max={controlItem.max}
+				step={controlItem.step}
 				value={formData[controlItem.name as keyof FormDataType]}
 				onChange={(e) => {
 					setFormData({
