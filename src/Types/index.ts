@@ -23,7 +23,7 @@ export interface ControlsType {
 	label: string;
 	min?: number;
 	max?: number;
-	step?: number
+	step?: number;
 }
 
 export type Controls = Record<string, ControlsType[]>;
@@ -36,4 +36,5 @@ export interface FormControlsType {
 	controls?: ControlsType[];
 	formData: FormDataType;
 	setFormData: Dispatch<SetStateAction<FormDataType>>;
+	handleSaveData?: (tabName?: MenuIds) => Promise<FormDataType | null>;
 }
