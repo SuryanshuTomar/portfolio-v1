@@ -8,6 +8,7 @@ export default function AdminAboutView({
 	controls,
 	formData,
 	setFormData,
+	handleSaveData,
 }: FormControlsType) {
 	return (
 		<div className="w-full">
@@ -17,7 +18,10 @@ export default function AdminAboutView({
 					formData={formData}
 					setFormData={setFormData}
 				/>
-				<button className="mt-10 border border-green-600 p-4 font-bold text-[16px]">
+				<button
+					className="mt-10 border border-green-600 p-4 font-bold text-[16px]"
+					onClick={() => handleSaveData?.("about")}
+				>
 					Add Info
 				</button>
 			</div>
