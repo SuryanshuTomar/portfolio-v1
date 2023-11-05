@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 
-import { addData, getData } from "@/services";
-import type { FormDataType, MenuIds } from "@/Types";
+import { addData, getData, updateData } from "@/services";
+import type { ApiResponseType, FormDataType, MenuIds } from "@/Types";
 import { controls } from "@/utils";
 
 import {
@@ -19,7 +19,10 @@ export default function AdminView() {
 	const [currentSelectedTab, setCurrentSelectedTab] =
 		useState<MenuIds>("home");
 
-	const [allTabsData, setAllTabsData] = useState({});
+	const [allTabsData, setAllTabsData] = useState<Record<string, Response[]>>(
+		{}
+	);
+	const [shouldDataUpdate, setShouldDataUpdate] = useState(false);
 
 	const [homeViewFormData, setHomeViewFormData] =
 		useState<FormDataType>(initialHomeFormData);
@@ -113,26 +116,33 @@ export default function AdminView() {
 		) {
 			if (Array.isArray(response?.data) && response?.data.length > 0) {
 				if (currentTab === "home") {
-					setHomeViewFormData(response.data[0]);
+					setHomeViewFormData(response.data[0] as unknown as FormDataType);
+					setShouldDataUpdate(true);
 				} else if (currentTab === "about") {
-					setAboutViewFormData(response.data[0]);
+					setAboutViewFormData(
+						response.data[0] as unknown as FormDataType
+					);
+					setShouldDataUpdate(true);
 				}
 			}
-		}
 
-		if (response !== null || response !== undefined) {
-			setAllTabsData({
+			const updatedTabsData = {
 				...allTabsData,
 				[currentTab]: response?.data,
-			});
+			};
+
+			setAllTabsData(updatedTabsData);
 		}
 	}
 	// This function will be called to save the form data
 	async function handleSaveData(
 		tabName?: MenuIds
-	): Promise<FormDataType | null> {
+	): Promise<ApiResponseType | null> {
 		const currentTab = tabName ?? currentSelectedTab;
-		const response = await addData(currentTab, getFormData(currentTab));
+		const response =
+			shouldDataUpdate === true
+				? await updateData(currentTab, getFormData(currentTab))
+				: await addData(currentTab, getFormData(currentTab));
 
 		if (response !== null && response !== undefined) {
 			resetFormsData();
@@ -151,6 +161,7 @@ export default function AdminView() {
 			onClick={() => {
 				setCurrentSelectedTab(menuItem.id);
 				resetFormsData();
+				setShouldDataUpdate(false);
 			}}
 		>
 			{menuItem.label}
