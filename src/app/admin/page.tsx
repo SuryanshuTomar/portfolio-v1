@@ -19,9 +19,9 @@ export default function AdminView() {
 	const [currentSelectedTab, setCurrentSelectedTab] =
 		useState<MenuIds>("home");
 
-	const [allTabsData, setAllTabsData] = useState<Record<string, Response[]>>(
-		{}
-	);
+	const [allTabsData, setAllTabsData] = useState<
+		Record<string, FormDataType[]>
+	>({});
 	const [shouldDataUpdate, setShouldDataUpdate] = useState(false);
 
 	const [homeViewFormData, setHomeViewFormData] =
@@ -116,11 +116,11 @@ export default function AdminView() {
 		) {
 			if (Array.isArray(response?.data) && response?.data.length > 0) {
 				if (currentTab === "home") {
-					setHomeViewFormData(response.data[0] as unknown as FormDataType);
+					setHomeViewFormData(response.data[0]);
 					setShouldDataUpdate(true);
 				} else if (currentTab === "about") {
 					setAboutViewFormData(
-						response.data[0] as unknown as FormDataType
+						response.data[0]
 					);
 					setShouldDataUpdate(true);
 				}
@@ -177,6 +177,7 @@ export default function AdminView() {
 				formData={getFormData(menuItem.id)}
 				setFormData={getSetFormData(menuItem.id)}
 				handleSaveData={handleSaveData}
+				savedData={allTabsData[menuItem.id]}
 			/>
 		) : undefined
 	);

@@ -29,7 +29,7 @@ export interface ControlsType {
 export type Controls = Record<string, ControlsType[]>;
 
 export interface FormDataType {
-	[key: string]: string | number | readonly string[] | undefined;
+	[key: string]: string | number;
 }
 
 export interface FormControlsType {
@@ -39,12 +39,12 @@ export interface FormControlsType {
 }
 
 export interface ComponentViewType extends FormControlsType {
-	savedData: Response[];
+	savedData: FormDataType[];
 	handleSaveData: (tabName?: MenuIds) => Promise<ApiResponseType | null>;
 }
 
 export interface ApiResponseType {
-	data: Response[];
+	data: FormDataType[];
 	success: boolean;
 	message: string;
 }
