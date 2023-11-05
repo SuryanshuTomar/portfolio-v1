@@ -1,10 +1,10 @@
-import type { FormDataType, MenuIds } from "@/Types";
+import type { ApiResponseType, FormDataType, MenuIds } from "@/Types";
 
 export async function addData(
 	currentTab: MenuIds,
 	formData: FormDataType
-): Promise<FormDataType | null> {
-	let result: FormDataType | null = null;
+): Promise<ApiResponseType | null> {
+	let result: ApiResponseType | null = null;
 	try {
 		const response = await fetch(`/api/${currentTab}/add`, {
 			method: "POST",
@@ -21,10 +21,8 @@ export async function addData(
 	return result;
 }
 
-export async function getData(
-	currentTab: MenuIds
-): Promise<FormDataType | null> {
-	let result: FormDataType | null = null;
+export async function getData(currentTab: MenuIds): Promise<ApiResponseType | null> {
+	let result: ApiResponseType | null = null;
 	try {
 		const response = await fetch(`/api/${currentTab}/get`);
 		result = await response.json();
