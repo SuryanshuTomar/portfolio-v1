@@ -1,6 +1,6 @@
 "use client";
 
-import type { ComponentViewType, FormControlsType } from "@/Types";
+import type { ComponentViewType } from "@/Types";
 
 import FormControls from "../form-controls";
 

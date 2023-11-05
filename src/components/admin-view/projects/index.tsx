@@ -1,6 +1,6 @@
 "use client";
 
-import type { ComponentViewType, FormControlsType } from "@/Types";
+import type { ComponentViewType } from "@/Types";
 
 import FormControls from "../form-controls";
 
@@ -20,7 +20,7 @@ export default function AdminProjectsView({
 				/>
 				<button
 					className="mt-10 border border-green-600 p-4 font-bold text-[16px]"
-					onClick={() => handleSaveData?.("projects")}
+					onClick={() => handleSaveData("projects")}
 				>
 					Add Info
 				</button>
