@@ -1,6 +1,6 @@
 "use client";
 
-import type { FormControlsType } from "@/Types";
+import type { ComponentViewType, FormControlsType } from "@/Types";
 
 import FormControls from "../form-controls";
 
@@ -9,7 +9,8 @@ export default function AdminExperienceView({
 	formData,
 	setFormData,
 	handleSaveData,
-}: FormControlsType) {
+	savedData,
+}: ComponentViewType) {
 	return (
 		<div className="w-full">
 			<div className="bg-[#ffffff] shadow-md rounded px-8 pt-6 pb-8 mb-4">
@@ -20,7 +21,7 @@ export default function AdminExperienceView({
 				/>
 				<button
 					className="mt-10 border border-green-600 p-4 font-bold text-[16px]"
-					onClick={() => handleSaveData?.("experience")}
+					onClick={() => handleSaveData("experience")}
 				>
 					Add Info
 				</button>

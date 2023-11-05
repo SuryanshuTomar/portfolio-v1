@@ -1,6 +1,6 @@
 "use client";
 
-import type { FormControlsType } from "@/Types";
+import type { ComponentViewType, FormControlsType } from "@/Types";
 
 import FormControls from "../form-controls";
 
@@ -9,7 +9,7 @@ export default function AdminEducationView({
 	formData,
 	setFormData,
 	handleSaveData,
-}: FormControlsType) {
+}: ComponentViewType) {
 	return (
 		<div className="w-full">
 			<div className="bg-[#ffffff] shadow-md rounded px-8 pt-6 pb-8 mb-4">
