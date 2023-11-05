@@ -13,7 +13,7 @@ export type MenuIds = Lowercase<MenuLabels>;
 export interface MenuItem {
 	id: MenuIds;
 	label: MenuLabels;
-	component: React.FC<FormControlsType>;
+	component: React.FC<ComponentViewType>;
 }
 
 export interface ControlsType {
@@ -36,5 +36,15 @@ export interface FormControlsType {
 	controls?: ControlsType[];
 	formData: FormDataType;
 	setFormData: Dispatch<SetStateAction<FormDataType>>;
-	handleSaveData?: (tabName?: MenuIds) => Promise<FormDataType | null>;
+}
+
+export interface ComponentViewType extends FormControlsType {
+	savedData: Response[];
+	handleSaveData: (tabName?: MenuIds) => Promise<ApiResponseType | null>;
+}
+
+export interface ApiResponseType {
+	data: Response[];
+	success: boolean;
+	message: string;
 }
