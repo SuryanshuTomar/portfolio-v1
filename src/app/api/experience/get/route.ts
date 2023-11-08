@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
 		await connectDb();
 		const responseData = await ExperienceModel.find({});
 
-		if (responseData !== undefined && responseData.length > 0) {
+		if (responseData !== undefined && responseData !== null) {
 			return NextResponse.json({
 				success: true,
 				message: "Data saved successfully",
