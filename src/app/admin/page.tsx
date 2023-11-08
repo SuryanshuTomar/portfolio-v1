@@ -157,7 +157,12 @@ export default function AdminView() {
 		<button
 			key={menuItem.id}
 			type="button"
-			className="p-4 font-bold text-xl text-black"
+			className="p-4 font-bold text-xl text-black hover:text-green-600 active:text-green-700 rounded-md"
+			style={{
+				color: currentSelectedTab === menuItem.id ? "#22c55e" : "",
+				borderBottom:
+					currentSelectedTab === menuItem.id ? "1px solid #22c55e" : "",
+			}}
 			onClick={() => {
 				setCurrentSelectedTab(menuItem.id);
 				resetFormsData();
