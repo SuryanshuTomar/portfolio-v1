@@ -70,7 +70,7 @@ export const initialProjectsFormData: FormDataType = {
 	name: "",
 	website: "",
 	technologies: "",
-	github: "",
+	sourcelink: "",
 };
 
 export const initialLoginFormData: FormDataType = {

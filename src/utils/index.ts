@@ -128,10 +128,10 @@ export const controls: Controls = {
 			label: "Website",
 		},
 		{
-			name: "github",
-			placeholder: "Github",
+			name: "sourcelink",
+			placeholder: "Source Link",
 			type: "text",
-			label: "github",
+			label: "Source Link",
 		},
 	],
 	contact: [],
