@@ -12,7 +12,7 @@ export default function AdminHomeView({
 }: ComponentViewType) {
 	return (
 		<div className="w-full">
-			<div className="bg-[#ffffff] shadow-md rounded px-8 pt-6 pb-8 mb-4">
+			<div className="bg-[#ffffff] shadow-lg shadow-gray-400 rounded px-8 pt-6 pb-8 mb-4">
 				<FormControls
 					controls={controls}
 					formData={formData}

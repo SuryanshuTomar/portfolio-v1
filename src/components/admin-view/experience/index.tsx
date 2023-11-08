@@ -1,5 +1,6 @@
 "use client";
 
+import { initialExperienceFormData } from "@/app/admin/utils";
 import type { ComponentViewType } from "@/Types";
 
 import FormControls from "../form-controls";
@@ -13,7 +14,8 @@ export default function AdminExperienceView({
 }: ComponentViewType) {
 	return (
 		<div className="w-full">
-			<div className="bg-[#ffffff] shadow-md rounded px-8 pt-6 pb-8 mb-4">
+			<div className="bg-[#ffffff] shadow-lg shadow-gray-400 rounded px-8 pt-6 pb-8 mb-4">
+				<h3 className="text-lg my-5 font-bold">Add New Experience :</h3>
 				<FormControls
 					controls={controls}
 					formData={formData}
@@ -25,6 +27,27 @@ export default function AdminExperienceView({
 				>
 					Add Info
 				</button>
+
+				<div className="my-10">
+					<hr className="h-1 bg-gray-200 rounded-md" />
+					<h3 className="text-lg my-5 font-bold">
+						Previous Experiences :
+					</h3>
+					{savedData && savedData.length > 0
+						? savedData.map((dataItem) => (
+								<div
+									key={dataItem._id}
+									className="flex flex-col border gap-4 p-4 border-green-400 rounded-md"
+								>
+									{Object.keys(initialExperienceFormData).map(
+										(item) => (
+											<p key={item}>{dataItem[item]}</p>
+										)
+									)}
+								</div>
+						  ))
+						: undefined}
+				</div>
 			</div>
 		</div>
 	);
