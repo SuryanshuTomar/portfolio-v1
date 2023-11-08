@@ -1,27 +1,43 @@
-import mongoose from "mongoose";
+import type mongoose from "mongoose";
+import { Schema, model, models } from "mongoose";
 
-const ExperienceSchema = new mongoose.Schema(
+export interface ExperienceSchemaDocumentType extends mongoose.Document {
+	position: string;
+	company: string;
+	duration: string;
+	location: string;
+	jobprofile: string;
+	createdAt: Date;
+	updatedAt: Date;
+}
+
+export type ExperienceSchemaType = Omit<
+	ExperienceSchemaDocumentType,
+	keyof mongoose.Document | "createdAt" | "updatedAt"
+>;
+
+const ExperienceSchema = new Schema<ExperienceSchemaDocumentType>(
 	{
-		postion: {
+		position: {
 			type: String,
-			require: true,
+			required: true,
 		},
 		company: {
 			type: String,
-			require: true,
+			required: true,
 		},
 		duration: {
-			type: Number,
-			require: true,
-			default: 0,
+			type: String,
+			required: true,
+			default: "-",
 		},
 		location: {
 			type: String,
-			require: true,
+			required: true,
 		},
 		jobprofile: {
 			type: String,
-			require: true,
+			required: true,
 		},
 	},
 	{
@@ -30,6 +46,7 @@ const ExperienceSchema = new mongoose.Schema(
 );
 
 const ExperienceModel =
-	mongoose.models.Experience || mongoose.model("Experience", ExperienceSchema);
+	models.Experience ||
+	model<ExperienceSchemaDocumentType>("Experience", ExperienceSchema);
 
 export default ExperienceModel;

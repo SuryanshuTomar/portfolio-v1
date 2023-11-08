@@ -1,21 +1,37 @@
-import mongoose from "mongoose";
+import type mongoose from "mongoose";
+import { Schema, model, models } from "mongoose";
 
-const ProjectsSchema = new mongoose.Schema(
+export interface ProjectsSchemaDocumentType extends mongoose.Document {
+	name: string;
+	website: string;
+	technologies: string[];
+	sourcelink: string;
+	createdAt: Date;
+	updatedAt: Date;
+}
+
+export type ProjectsSchemaType = Omit<
+	ProjectsSchemaDocumentType,
+	keyof mongoose.Document | "createdAt" | "updatedAt"
+>;
+
+const ProjectsSchema = new Schema<ProjectsSchemaDocumentType>(
 	{
 		name: {
 			type: String,
-			require: true,
+			required: true,
 		},
 		website: {
 			type: String,
-			require: true,
+			required: true,
 		},
 		technologies: {
-			type: Array<String>,
-			require: true,
+			type: [String],
+			required: true,
 		},
-		source: {
+		sourcelink: {
 			type: String,
+			required: true,
 		},
 	},
 	{
@@ -24,6 +40,7 @@ const ProjectsSchema = new mongoose.Schema(
 );
 
 const ProjectsModel =
-	mongoose.models.Projects || mongoose.model("Projects", ProjectsSchema);
+	models.Projects ||
+	model<ProjectsSchemaDocumentType>("Projects", ProjectsSchema);
 
 export default ProjectsModel;

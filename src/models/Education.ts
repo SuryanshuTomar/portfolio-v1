@@ -1,18 +1,33 @@
-import mongoose from "mongoose";
+import type mongoose from "mongoose";
+import { model, models } from "mongoose";
+import { Schema } from "mongoose";
 
-const EducationSchema = new mongoose.Schema(
+export interface EducationSchemaDocumentType extends mongoose.Document {
+	degree: string;
+	year: string;
+	college: string;
+	createdAt: Date;
+	updatedAt: Date;
+}
+
+export type EducationSchemaType = Omit<
+	EducationSchemaDocumentType,
+	keyof mongoose.Document | "createdAt" | "updatedAt"
+>;
+
+const EducationSchema = new Schema<EducationSchemaDocumentType>(
 	{
 		degree: {
 			type: String,
-			require: true,
+			required: true,
 		},
 		year: {
 			type: String,
-			require: true,
+			required: true,
 		},
 		college: {
 			type: String,
-			require: true,
+			required: true,
 		},
 	},
 	{
@@ -21,6 +36,7 @@ const EducationSchema = new mongoose.Schema(
 );
 
 const EducationModel =
-	mongoose.models.Education || mongoose.model("Education", EducationSchema);
+	models.Education ||
+	model<EducationSchemaDocumentType>("Education", EducationSchema);
 
 export default EducationModel;

@@ -1,14 +1,27 @@
-import mongoose from "mongoose";
+import type mongoose from "mongoose";
+import { Schema, model, models } from "mongoose";
 
-const HomeSchema = new mongoose.Schema(
+export interface HomeSchemaDocumentType extends mongoose.Document {
+	heading: string;
+	summary: string;
+	createdAt: Date;
+	updatedAt: Date;
+}
+
+export type HomeSchemaType = Omit<
+	HomeSchemaDocumentType,
+	keyof mongoose.Document | "createdAt" | "updatedAt"
+>;
+
+const HomeSchema = new Schema<HomeSchemaDocumentType>(
 	{
 		heading: {
 			type: String,
-			require: true,
+			required: true,
 		},
 		summary: {
 			type: String,
-			require: true,
+			required: true,
 		},
 	},
 	{
@@ -16,6 +29,7 @@ const HomeSchema = new mongoose.Schema(
 	}
 );
 
-const HomeModel = mongoose.models.Home || mongoose.model("Home", HomeSchema);
+const HomeModel =
+	models.Home || model<HomeSchemaDocumentType>("Home", HomeSchema);
 
 export default HomeModel;

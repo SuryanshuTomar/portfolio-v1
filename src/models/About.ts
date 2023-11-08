@@ -1,29 +1,45 @@
-import mongoose from "mongoose";
+import type mongoose from "mongoose";
+import { Schema, model, models } from "mongoose";
 
-const AboutSchema = new mongoose.Schema(
+export interface AboutSchemaDocumentType extends mongoose.Document {
+	aboutme: string;
+	noofprojects: number;
+	yearofexperience: number;
+	noofclients: number;
+	skills: [string];
+	createdAt: Date;
+	updatedAt: Date;
+}
+
+export type AboutSchemaType = Omit<
+	AboutSchemaDocumentType,
+	keyof mongoose.Document | "createdAt" | "updatedAt"
+>;
+
+const AboutSchema = new Schema<AboutSchemaDocumentType>(
 	{
 		aboutme: {
 			type: String,
-			require: true,
+			required: true,
 		},
 		noofprojects: {
 			type: Number,
-			require: true,
+			required: true,
 			default: 0,
 		},
 		yearofexperience: {
 			type: Number,
-			require: true,
+			required: true,
 			default: 0,
 		},
 		noofclients: {
 			type: Number,
-			require: true,
+			required: true,
 			default: 0,
 		},
 		skills: {
-			type: Array<String>,
-			require: true,
+			type: [String],
+			required: true,
 			default: null,
 		},
 	},
@@ -33,6 +49,6 @@ const AboutSchema = new mongoose.Schema(
 );
 
 const AboutModel =
-	mongoose.models.About || mongoose.model("About", AboutSchema);
+	models.About || model<AboutSchemaDocumentType>("About", AboutSchema);
 
 export default AboutModel;
