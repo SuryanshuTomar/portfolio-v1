@@ -1,9 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useState, useEffect, useContext } from "react";
 
+import { AuthContext } from "@/context/authContext";
 import { addData, getData, updateData } from "@/services";
-import type { ApiResponseType, FormDataType, MenuIds } from "@/Types";
+import type {
+	ApiResponseType,
+	AuthContextState,
+	FormDataType,
+	MenuIds,
+} from "@/Types";
 import { controls } from "@/utils";
 
 import {
@@ -16,14 +23,22 @@ import {
 import { menuItems } from "./utils";
 
 export default function AdminView() {
+	const router = useRouter();
+	const { userAuth, setUserAuth } = useContext<AuthContextState>(AuthContext);
+
+	// Set the current selected tab
 	const [currentSelectedTab, setCurrentSelectedTab] =
 		useState<MenuIds>("home");
 
+	// Set all tabs data.
 	const [allTabsData, setAllTabsData] = useState<
 		Record<string, FormDataType[]>
 	>({});
+
+	// Flag for checking if there is already some previous data stored for tabs like projects, education and experience
 	const [shouldDataUpdate, setShouldDataUpdate] = useState(false);
 
+	// Set the initial FormData for the all the tabs
 	const [homeViewFormData, setHomeViewFormData] =
 		useState<FormDataType>(initialHomeFormData);
 	const [aboutViewFormData, setAboutViewFormData] =
@@ -119,9 +134,7 @@ export default function AdminView() {
 					setHomeViewFormData(response.data[0]);
 					setShouldDataUpdate(true);
 				} else if (currentTab === "about") {
-					setAboutViewFormData(
-						response.data[0]
-					);
+					setAboutViewFormData(response.data[0]);
 					setShouldDataUpdate(true);
 				}
 			}
@@ -153,25 +166,41 @@ export default function AdminView() {
 	}
 
 	// Navbar Component
-	const Navbar = menuItems.map((menuItem) => (
-		<button
-			key={menuItem.id}
-			type="button"
-			className="p-4 font-bold text-xl text-black hover:text-green-600 active:text-green-700 rounded-md"
-			style={{
-				color: currentSelectedTab === menuItem.id ? "#22c55e" : "",
-				borderBottom:
-					currentSelectedTab === menuItem.id ? "1px solid #22c55e" : "",
-			}}
-			onClick={() => {
-				setCurrentSelectedTab(menuItem.id);
-				resetFormsData();
-				setShouldDataUpdate(false);
-			}}
-		>
-			{menuItem.label}
-		</button>
-	));
+	const Navbar = (
+		<nav className="w-[100vw] flex justify-around align-middle">
+			<div>
+				{menuItems.map((menuItem) => (
+					<button
+						key={menuItem.id}
+						type="button"
+						className="p-4 font-bold text-xl text-black hover:text-green-600 active:text-green-700 rounded-md"
+						style={{
+							color: currentSelectedTab === menuItem.id ? "#22c55e" : "",
+							borderBottom:
+								currentSelectedTab === menuItem.id
+									? "1px solid #22c55e"
+									: "",
+						}}
+						onClick={() => {
+							setCurrentSelectedTab(menuItem.id);
+							resetFormsData();
+							setShouldDataUpdate(false);
+						}}
+					>
+						{menuItem.label}
+					</button>
+				))}
+			</div>
+			<button
+				onClick={() => {
+					setUserAuth(false);
+					sessionStorage.removeItem("userAuth");
+				}}
+			>
+				Logout
+			</button>
+		</nav>
+	);
 
 	// View Component
 	const ViewComponent = menuItems.map((menuItem) =>
@@ -188,11 +217,19 @@ export default function AdminView() {
 	);
 
 	useEffect(() => {
+		const authUserParsed = sessionStorage.getItem("userAuth");
+		const authUserValue: boolean = authUserParsed
+			? JSON.parse(authUserParsed)
+			: false;
+		setUserAuth(authUserValue);
+	}, [setUserAuth]);
+
+	useEffect(() => {
 		getTabsData(currentSelectedTab);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentSelectedTab]);
 
-	return (
+	const content = userAuth ? (
 		<div className="border-b border-gray-200">
 			<nav className="-mb-0.5 flex justify-center space-x-6" role="tablist">
 				{/* Rendering Navbar */}
@@ -202,5 +239,9 @@ export default function AdminView() {
 			{/* Rendering View Components */}
 			<div className="mt-10 p-10">{ViewComponent}</div>
 		</div>
+	) : (
+		router.push("/login", { scroll: false })
 	);
+
+	return content;
 }
