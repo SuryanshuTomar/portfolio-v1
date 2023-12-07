@@ -135,4 +135,18 @@ export const controls: Controls = {
 		},
 	],
 	contact: [],
+	login: [
+		{
+			name: "username",
+			placeholder: "Enter your username",
+			type: "text",
+			label: "Enter your username",
+		},
+		{
+			name: "password",
+			placeholder: "Enter your password",
+			type: "password",
+			label: "Enter your password",
+		},
+	],
 };
