@@ -16,7 +16,9 @@ export default function AdminProjectsView({
 }: ComponentViewType) {
 	return (
 		<ViewContainer>
-			<h3 className="text-lg my-5 font-bold">Add New Project :</h3>
+			<h3 className="text-lg my-5 font-bold text-tertiary">
+				Add New Project :
+			</h3>
 			<FormControls
 				controls={controls}
 				formData={formData}
@@ -26,7 +28,9 @@ export default function AdminProjectsView({
 
 			<div className="my-10">
 				<hr className="h-1 bg-gray-200 rounded-md" />
-				<h3 className="text-lg my-5 font-bold">Previous Projects :</h3>
+				<h3 className="text-lg my-5 font-bold text-tertiary">
+					Previous Projects :
+				</h3>
 				{savedData && savedData.length > 0
 					? savedData.map((dataItem) => (
 							<div
