@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import "./globals.css";
+import ThemeToggle from "@/components/Buttons/ThemeToggle";
 import { AuthContextProviderComp } from "@/context/authContext";
+import { ThemeContextProviderComp } from "@/context/themeContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,9 +19,14 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning>
 			<body className={inter.className}>
-				<AuthContextProviderComp>{children}</AuthContextProviderComp>
+				<ThemeContextProviderComp>
+					<AuthContextProviderComp>
+						{children}
+						<ThemeToggle />
+					</AuthContextProviderComp>
+				</ThemeContextProviderComp>
 			</body>
 		</html>
 	);
