@@ -1,9 +1,9 @@
-import AdminAboutView from "@/components/admin-view/about";
-import AdminContactView from "@/components/admin-view/contact";
-import AdminEducationView from "@/components/admin-view/education";
-import AdminExperienceView from "@/components/admin-view/experience";
-import AdminHomeView from "@/components/admin-view/home";
-import AdminProjectsView from "@/components/admin-view/projects";
+import AdminAboutView from "@/components/Views/admin-view/about";
+import AdminContactView from "@/components/Views/admin-view/contact";
+import AdminEducationView from "@/components/Views/admin-view/education";
+import AdminExperienceView from "@/components/Views/admin-view/experience";
+import AdminHomeView from "@/components/Views/admin-view/home";
+import AdminProjectsView from "@/components/Views/admin-view/projects";
 import type { FormDataType, MenuItem } from "@/Types";
 
 export const menuItems: MenuItem[] = [
