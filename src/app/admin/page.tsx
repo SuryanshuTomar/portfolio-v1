@@ -209,7 +209,7 @@ export default function AdminView() {
 			/>
 
 			{/* Rendering View Components */}
-			<div className="mt-10 p-10">{ViewComponent}</div>
+			<div className="mt-10 sm:p-10">{ViewComponent}</div>
 		</div>
 	);
 }
