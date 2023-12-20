@@ -46,6 +46,12 @@ export const Navbar: FC<NavbarProps> = ({
 		);
 	});
 
+	const handleClick = () => {
+		console.log("Clicking");
+		setUserAuth(false);
+		sessionStorage.removeItem("userAuth");
+	};
+
 	return (
 		<nav
 			className="w-[100vw] bg-primaryBg text-onPrimaryBg flex justify-around items-center"
@@ -53,14 +59,7 @@ export const Navbar: FC<NavbarProps> = ({
 		>
 			<div>{NavMenuItems}</div>
 
-			<NoOutlineButton
-				onClick={() => {
-					setUserAuth(false);
-					sessionStorage.removeItem("userAuth");
-				}}
-			>
-				Logout
-			</NoOutlineButton>
+			<NoOutlineButton onClick={handleClick}>Logout</NoOutlineButton>
 		</nav>
 	);
 };
