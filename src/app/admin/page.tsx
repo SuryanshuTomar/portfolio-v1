@@ -199,7 +199,7 @@ export default function AdminView() {
 	}, [currentSelectedTab]);
 
 	return (
-		<div className="border-b border-gray-200">
+		<div className="h-content min-h-screen border-b border-gray-200 bg-tertiary ">
 			{/* Rendering Navbar */}
 			<Navbar
 				currentTab={currentSelectedTab}

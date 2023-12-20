@@ -54,7 +54,7 @@ export const Navbar: FC<NavbarProps> = ({
 
 	return (
 		<nav
-			className="w-[100vw] bg-primaryBg text-onPrimaryBg flex justify-around items-center"
+			className="w-full bg-primaryBg text-onPrimaryBg flex justify-around items-center"
 			role="tablist"
 		>
 			<div>{NavMenuItems}</div>
