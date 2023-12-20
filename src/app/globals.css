@@ -17,6 +17,19 @@
 	}
 }
 
+/* add the code bellow */
+@layer utilities {
+	/* Hide scrollbar for Chrome, Safari and Opera */
+	.no-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+	/* Hide scrollbar for IE, Edge and Firefox */
+	.no-scrollbar {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
+	}
+}
+
 .theme-type-1 {
 	--color-primary-50: #fef1f8;
 	--color-primary-100: #fee5f3;
