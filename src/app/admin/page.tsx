@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect, useContext } from "react";
 
+import { Navbar } from "@/components/Navbar";
 import { AuthContext } from "@/context/authContext";
 import { addData, getData, updateData } from "@/services";
 import type {
@@ -147,6 +148,7 @@ export default function AdminView() {
 			setAllTabsData(updatedTabsData);
 		}
 	}
+
 	// This function will be called to save the form data
 	async function handleSaveData(
 		tabName?: MenuIds
@@ -164,43 +166,6 @@ export default function AdminView() {
 
 		return response;
 	}
-
-	// Navbar Component
-	const Navbar = (
-		<nav className="w-[100vw] flex justify-around align-middle">
-			<div>
-				{menuItems.map((menuItem) => (
-					<button
-						key={menuItem.id}
-						type="button"
-						className="p-4 font-bold text-xl text-black hover:text-green-600 active:text-green-700 rounded-md"
-						style={{
-							color: currentSelectedTab === menuItem.id ? "#22c55e" : "",
-							borderBottom:
-								currentSelectedTab === menuItem.id
-									? "1px solid #22c55e"
-									: "",
-						}}
-						onClick={() => {
-							setCurrentSelectedTab(menuItem.id);
-							resetFormsData();
-							setShouldDataUpdate(false);
-						}}
-					>
-						{menuItem.label}
-					</button>
-				))}
-			</div>
-			<button
-				onClick={() => {
-					setUserAuth(false);
-					sessionStorage.removeItem("userAuth");
-				}}
-			>
-				Logout
-			</button>
-		</nav>
-	);
 
 	// View Component
 	const ViewComponent = menuItems.map((menuItem) =>
@@ -222,26 +187,29 @@ export default function AdminView() {
 			? JSON.parse(authUserParsed)
 			: false;
 		setUserAuth(authUserValue);
-	}, [setUserAuth]);
+
+		if (!authUserValue) {
+			return router.push("/login", { scroll: false });
+		}
+	}, [router, userAuth, setUserAuth]);
 
 	useEffect(() => {
 		getTabsData(currentSelectedTab);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentSelectedTab]);
 
-	const content = userAuth ? (
+	return (
 		<div className="border-b border-gray-200">
-			<nav className="-mb-0.5 flex justify-center space-x-6" role="tablist">
-				{/* Rendering Navbar */}
-				{Navbar}
-			</nav>
+			{/* Rendering Navbar */}
+			<Navbar
+				currentTab={currentSelectedTab}
+				resetFormsData={resetFormsData}
+				setCurrentSelectedTab={setCurrentSelectedTab}
+				setShouldDataUpdate={setShouldDataUpdate}
+			/>
 
 			{/* Rendering View Components */}
 			<div className="mt-10 p-10">{ViewComponent}</div>
 		</div>
-	) : (
-		router.push("/login", { scroll: false })
 	);
-
-	return content;
 }
