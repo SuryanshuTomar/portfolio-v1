@@ -23,7 +23,6 @@ function Login() {
 	// This function will handle the admin login service
 	async function handleAdminLogin(): Promise<void> {
 		const response = await login(loginFormData);
-		console.log(response);
 
 		if (response?.success) {
 			setUserAuth(true);
