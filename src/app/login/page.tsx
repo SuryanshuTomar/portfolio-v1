@@ -3,7 +3,9 @@
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
-import FormControls from "@/components/admin-view/form-controls";
+import Button from "@/components/Buttons/Button";
+import FormControls from "@/components/FormControls";
+import ViewContainer from "@/components/ViewContainer";
 import { AuthContext } from "@/context/authContext";
 import { login } from "@/services";
 import type { AuthContextState, FormDataType } from "@/Types";
@@ -35,28 +37,26 @@ function Login() {
 			? JSON.parse(authUserParsed)
 			: false;
 		setUserAuth(authUserValue);
-	}, [setUserAuth]);
 
-	const content = userAuth ? (
-		router.push("/admin")
-	) : (
-		<div className="w-full">
-			<div className="bg-[#ffffff] shadow-lg shadow-gray-400 rounded px-8 pt-6 pb-8 mb-4">
+		if (authUserValue) {
+			return router.push("/admin");
+		}
+	}, [router, userAuth, setUserAuth]);
+
+	return (
+		<div className="w-full h-screen flex justify-center items-center bg-secondary">
+			<ViewContainer className="md:w-[50%]">
+				<h1 className="text-center my-2 mb-8 font-bold text-xl text-onPrimaryBg">
+					Admin Login
+				</h1>
 				<FormControls
 					controls={controls["login"]}
 					formData={loginFormData}
 					setFormData={setLoginFormData}
 				/>
-				<button
-					className="mt-10 border border-green-600 p-4 font-bold text-[16px]"
-					onClick={() => handleAdminLogin()}
-				>
-					Login
-				</button>
-			</div>
+				<Button onClick={() => handleAdminLogin()}>Login</Button>
+			</ViewContainer>
 		</div>
 	);
-
-	return content;
 }
 export default Login;
