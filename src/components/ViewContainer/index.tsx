@@ -8,7 +8,7 @@ interface ViewContainerProps extends HTMLAttributes<HTMLDivElement> {
 
 const ViewContainer: FC<ViewContainerProps> = ({ children, className }) => {
 	const containerClass = [
-		"bg-primaryBg shadow-lg shadow-primary rounded px-2 md:px-8 pt-6 pb-8 mb-4",
+		"bg-primaryBg shadow-lg shadow-primary rounded px-4 md:px-8 pt-6 pb-8 mb-4",
 		className,
 	]
 		.filter(Boolean)
