@@ -201,6 +201,7 @@ export default function AdminView() {
 				resetFormsData={resetFormsData}
 				setCurrentSelectedTab={setCurrentSelectedTab}
 				setShouldDataUpdate={setShouldDataUpdate}
+				showButton
 			/>
 
 			{/* Rendering View Components */}
