@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect, useContext } from "react";
 
+import Loader from "@/components/Loading";
 import { Navbar } from "@/components/Navbar";
 import { AuthContext } from "@/context/authContext";
 import { addData, getData, updateData } from "@/services";
@@ -182,13 +183,7 @@ export default function AdminView() {
 	);
 
 	useEffect(() => {
-		const authUserParsed = sessionStorage.getItem("userAuth");
-		const authUserValue: boolean = authUserParsed
-			? JSON.parse(authUserParsed)
-			: false;
-		setUserAuth(authUserValue);
-
-		if (!authUserValue) {
+		if (!userAuth) {
 			return router.push("/login", { scroll: false });
 		}
 	}, [router, userAuth, setUserAuth]);
@@ -198,7 +193,7 @@ export default function AdminView() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentSelectedTab]);
 
-	return (
+	const content = userAuth ? (
 		<div className="h-content min-h-screen border-b border-gray-200 bg-tertiary ">
 			{/* Rendering Navbar */}
 			<Navbar
@@ -211,5 +206,9 @@ export default function AdminView() {
 			{/* Rendering View Components */}
 			<div className="mt-10 sm:p-10">{ViewComponent}</div>
 		</div>
+	) : (
+		<Loader />
 	);
+
+	return content;
 }

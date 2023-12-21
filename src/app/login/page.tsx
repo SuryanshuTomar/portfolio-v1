@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 
 import Button from "@/components/Buttons/Button";
 import FormControls from "@/components/FormControls";
+import Loader from "@/components/Loading";
 import ViewContainer from "@/components/ViewContainer";
 import { AuthContext } from "@/context/authContext";
 import { login } from "@/services";
@@ -31,31 +32,34 @@ function Login() {
 	}
 
 	useEffect(() => {
-		const authUserParsed = sessionStorage.getItem("userAuth");
-		const authUserValue: boolean = authUserParsed
-			? JSON.parse(authUserParsed)
-			: false;
-		setUserAuth(authUserValue);
-
-		if (authUserValue) {
-			return router.push("/admin");
+		console.log(userAuth);
+		if (userAuth === true) {
+			return router.push("/admin", { scroll: false });
 		}
-	}, [router, userAuth, setUserAuth]);
+	}, [router, userAuth]);
 
-	return (
-		<div className="w-full h-screen flex justify-center items-center bg-secondary">
-			<ViewContainer className="md:w-[50%]">
-				<h1 className="text-center my-2 mb-8 font-bold text-xl text-onPrimaryBg">
-					Admin Login
-				</h1>
-				<FormControls
-					controls={controls["login"]}
-					formData={loginFormData}
-					setFormData={setLoginFormData}
-				/>
-				<Button onClick={() => handleAdminLogin()}>Login</Button>
-			</ViewContainer>
-		</div>
-	);
+	const content =
+		userAuth === null || userAuth === false ? (
+			<div className="h-content min-h-screen border-b border-gray-200 bg-tertiary ">
+				{/* Rendering Navbar */}
+				<div className="w-full h-screen flex justify-center items-center bg-secondary">
+					<ViewContainer className="md:w-[50%]">
+						<h1 className="text-center my-2 mb-8 font-bold text-xl text-onPrimaryBg">
+							Admin Login
+						</h1>
+						<FormControls
+							controls={controls["login"]}
+							formData={loginFormData}
+							setFormData={setLoginFormData}
+						/>
+						<Button onClick={() => handleAdminLogin()}>Login</Button>
+					</ViewContainer>
+				</div>
+			</div>
+		) : (
+			<Loader />
+		);
+
+	return content;
 }
 export default Login;
