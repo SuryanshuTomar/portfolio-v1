@@ -2,6 +2,8 @@
 
 import { initialEducationFormData } from "@/app/admin/utils";
 import Button from "@/components/Buttons/Button";
+import Card from "@/components/Cards/Card";
+import CardsViewContainer from "@/components/Cards/CardsViewContainer";
 import ViewContainer from "@/components/ViewContainer";
 import type { ComponentViewType } from "@/Types";
 
@@ -25,25 +27,22 @@ export default function AdminEducationView({
 				setFormData={setFormData}
 			/>
 			<Button onClick={() => handleSaveData("education")}>Add Info</Button>
+			<hr className="h-1 bg-gray-200 rounded-md" />
+			<h3 className="text-lg my-5 font-bold text-tertiary">
+				Previous Educations :
+			</h3>
 
-			<div className="my-10">
-				<hr className="h-1 bg-gray-200 rounded-md" />
-				<h3 className="text-lg my-5 font-bold text-tertiary">
-					Previous Educations :
-				</h3>
+			<CardsViewContainer className="my-10">
 				{savedData && savedData.length > 0
 					? savedData.map((dataItem) => (
-							<div
+							<Card
 								key={dataItem._id}
-								className="flex flex-col border gap-4 p-4 border-green-400 rounded-md"
-							>
-								{Object.keys(initialEducationFormData).map((item) => (
-									<p key={item}>{dataItem[item]}</p>
-								))}
-							</div>
+								dataItem={dataItem}
+								cardItemData={initialEducationFormData}
+							/>
 					  ))
 					: undefined}
-			</div>
+			</CardsViewContainer>
 		</ViewContainer>
 	);
 }
