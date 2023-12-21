@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useState } from "react";
+import { useEffect, useContext, useState, useRef } from "react";
 import { FaPalette } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 
@@ -14,6 +14,24 @@ const ThemeToggle = () => {
 	const [currentTheme, setCurrentTheme] = theme;
 	const [currentMode, setCurrentMode] = mode;
 	const [menuOpen, setMenuOpen] = useState(false);
+	const menuRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (
+				menuRef.current &&
+				!menuRef.current.contains(event?.target as Node)
+			) {
+				setMenuOpen(false);
+			}
+		};
+
+		document.addEventListener("mousedown", handleClickOutside);
+
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, [menuRef]);
 
 	const toggleMenu = () => {
 		setMenuOpen(!menuOpen);
@@ -26,10 +44,10 @@ const ThemeToggle = () => {
 	return (
 		<div>
 			{/* Theme toggle button */}
-			<div className="fixed bottom-4 right-4 z-50 ">
+			<div className="fixed bottom-4 right-4 z-50 " ref={menuRef}>
 				<button
 					id="themeBtn"
-					className={`bg-primaryBg shadow-primary text-tertiary p-4 rounded-full shadow-md relative`}
+					className={`bg-primaryBg shadow-primary text-tertiary p-4 rounded-full shadow relative`}
 					onClick={toggleMenu}
 				>
 					{menuOpen ? <RxCross2 /> : <FaPalette />}
@@ -40,7 +58,7 @@ const ThemeToggle = () => {
 					id="themeMenu"
 					className={`${
 						menuOpen ? "" : "hidden"
-					} absolute  bottom-14 right-0 p-2 bg-primaryBg rounded-md shadow-md w-24 md:w-40`}
+					} absolute  bottom-14 right-0 p-2 bg-primaryBg rounded-md shadow shadow-primary w-24 md:w-40`}
 				>
 					{/* Theme options */}
 					{[1, 2, 3].map((btn) => (
