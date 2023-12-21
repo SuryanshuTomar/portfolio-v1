@@ -29,7 +29,7 @@ const ThemeToggle = () => {
 			<div className="fixed bottom-4 right-4 z-50 ">
 				<button
 					id="themeBtn"
-					className={`bg-primaryBg shadow-onPrimaryBg text-primary p-4 rounded-full shadow-md relative`}
+					className={`bg-primaryBg shadow-primary text-tertiary p-4 rounded-full shadow-md relative`}
 					onClick={toggleMenu}
 				>
 					{menuOpen ? <RxCross2 /> : <FaPalette />}

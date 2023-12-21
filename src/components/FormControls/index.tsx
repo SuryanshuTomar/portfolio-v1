@@ -6,7 +6,7 @@ export default function FormControls(props: FormControlsType) {
 	const { controls, formData, setFormData } = props;
 
 	return controls?.map((controlItem, idx) => (
-		<div className="mb-4 " key={idx}>
+		<div className="mb-4" key={idx}>
 			<label
 				className="block text-secondary text-sm font-bold mb-2"
 				htmlFor=""
