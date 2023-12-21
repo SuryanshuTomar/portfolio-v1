@@ -1,7 +1,7 @@
 "use client";
 
 import type { FC, ReactNode } from "react";
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
 
 import { useStickyTheme } from "@/hooks/useStickyTheme";
 import type { UseStickyStateReturnType } from "@/hooks/useStickyTheme";
@@ -15,11 +15,13 @@ export type ModeValues = (typeof modeValues)[number];
 type ThemeContextState = {
 	theme: UseStickyStateReturnType<ThemeValues>;
 	mode: UseStickyStateReturnType<ModeValues>;
+	loading: boolean;
 };
 
 const initialThemeState: ThemeContextState = {
 	theme: [themeValues[0], () => {}], // Set your default theme here
-	mode: [modeValues[0], () => {}], // Set your default mode here
+	mode: [modeValues[0], () => {}], // Set your default mode here,
+	loading: false,
 };
 
 export const ThemeContext = createContext(initialThemeState);
@@ -37,8 +39,21 @@ export const ThemeContextProviderComp: FC<{ children: ReactNode }> = ({
 		"mode"
 	);
 
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			setLoading(false);
+		}, 0);
+
+		// Cleanup the timeout to avoid memory leaks
+		return () => clearTimeout(timeout);
+	}, []);
+
 	return (
-		<ThemeContextProvider value={{ theme: themeState, mode: modeState }}>
+		<ThemeContextProvider
+			value={{ theme: themeState, mode: modeState, loading }}
+		>
 			{/* This is div is added so that we can add the themseState class and modeState class that we have defined in the "globals.css" file (like - .theme-type-1, .theme-type-2, .theme-type-3 and .theme-dark, .theme-light). */}
 			{/* In this way, we don't have to re-use these classes again and again in each component and in this way only we can use our defined classes. */}
 			<div className={`${themeState[0]} ${modeState[0]}`}>{children}</div>
