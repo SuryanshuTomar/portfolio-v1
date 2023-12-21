@@ -142,7 +142,7 @@
 	--onPrimaryBg: var(--color-primary-900);
 	--primary: var(--color-primary-400);
 	--secondary: var(--color-secondary-600);
-	--tertiary: var(--color-tertiary-600);
+	--tertiary: var(--color-tertiary-500);
 }
 
 .theme-dark {
