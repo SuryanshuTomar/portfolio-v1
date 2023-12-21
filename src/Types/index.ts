@@ -66,7 +66,12 @@ export interface ApiResponseType {
 	message: string;
 }
 
-export type AuthContextState = {
+export interface AuthContextState {
 	userAuth: boolean;
 	setUserAuth: Dispatch<SetStateAction<boolean>>;
-};
+}
+
+export interface ClientViewProps {
+	data?: FormDataType[];
+	otherData?: FormDataType[];
+}
