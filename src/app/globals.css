@@ -136,9 +136,9 @@
 }
 
 .theme-light {
-	--neutralBg: var(--color-neutral-100);
-	--onNeutralBg: var(--color-neutral-900);
-	--primaryBg: var(--color-primary-100);
+	--neutralBg: var(--color-primary-100);
+	--onNeutralBg: var(--color-primary-700);
+	--primaryBg: var(--color-primary-200);
 	--onPrimaryBg: var(--color-primary-900);
 	--primary: var(--color-primary-400);
 	--secondary: var(--color-secondary-600);
@@ -146,11 +146,11 @@
 }
 
 .theme-dark {
-	--neutralBg: var(--color-neutral-900);
-	--onNeutralBg: var(--color-neutral-100);
+	--neutralBg: var(--color-primary-600);
+	--onNeutralBg: var(--color-primary-100);
 	--primaryBg: var(--color-primary-900);
-	--onPrimaryBg: var(--color-primary-100);
-	--primary: var(--color-primary-600);
+	--onPrimaryBg: var(--color-primary-200);
+	--primary: var(--color-primary-800);
 	--secondary: var(--color-secondary-400);
 	--tertiary: var(--color-tertiary-400);
 }
