@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import type { FC } from "react";
 
 interface AnimationWrapperProps extends MotionProps {
-	className: string;
+	className?: string;
 }
 
 const AnimationWrapper: FC<AnimationWrapperProps> = ({
