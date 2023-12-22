@@ -30,6 +30,8 @@ const ThemeContextProvider = ThemeContext.Provider;
 export const ThemeContextProviderComp: FC<{ children: ReactNode }> = ({
 	children,
 }) => {
+	const [loading, setLoading] = useState(true);
+
 	const themeState = useStickyTheme<ThemeValues>(
 		initialThemeState.theme[0],
 		"theme"
@@ -39,15 +41,8 @@ export const ThemeContextProviderComp: FC<{ children: ReactNode }> = ({
 		"mode"
 	);
 
-	const [loading, setLoading] = useState(true);
-
 	useEffect(() => {
-		const timeout = setTimeout(() => {
-			setLoading(false);
-		}, 0);
-
-		// Cleanup the timeout to avoid memory leaks
-		return () => clearTimeout(timeout);
+		setLoading(false);
 	}, []);
 
 	return (
