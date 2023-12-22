@@ -1,3 +1,5 @@
+import type { Variants } from "framer-motion";
+
 import type { Controls } from "@/Types";
 
 export const controls: Controls = {
@@ -150,3 +152,22 @@ export const controls: Controls = {
 		},
 	],
 };
+
+export function getVariants(): Variants {
+	return {
+		offscreen: {
+			y: 150,
+			opacity: 0,
+		},
+		onscreen: ({ duration = 2 } = {}) => ({
+			y: 0,
+			opacity: 1,
+			transition: {
+				type: "spring",
+				duration,
+			},
+		}),
+	};
+}
+
+
