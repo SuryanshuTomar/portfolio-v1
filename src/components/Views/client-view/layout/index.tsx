@@ -1,18 +1,18 @@
 "use client";
 
 import { useContext, useEffect, useState } from "react";
-import type { FC, ReactNode } from "react";
+import type { FC, HTMLAttributes, ReactNode } from "react";
 
 import Loader from "@/components/Loading";
 import { Navbar } from "@/components/Navbar";
 import { ThemeContext } from "@/context/themeContext";
 import type { MenuIds } from "@/Types";
 
-interface CommonLayoutProps {
+interface CommonLayoutProps extends HTMLAttributes<HTMLDivElement> {
 	children: ReactNode;
 }
 
-const CommonLayout: FC<CommonLayoutProps> = ({ children }) => {
+const CommonLayout: FC<CommonLayoutProps> = ({ children, className }) => {
 	const { loading } = useContext(ThemeContext);
 	// Set the current selected tab
 	const [currentSelectedTab, setCurrentSelectedTab] =
@@ -26,13 +26,13 @@ const CommonLayout: FC<CommonLayoutProps> = ({ children }) => {
 	}, []);
 
 	const content = !loading ? (
-		<>
+		<div className={className}>
 			<Navbar
 				currentTab="home"
 				setCurrentSelectedTab={setCurrentSelectedTab}
 			/>
 			{children}
-		</>
+		</div>
 	) : (
 		<Loader />
 	);
