@@ -4,15 +4,18 @@ import ExperienceAndEducationView from "@/components/Views/client-view/experienc
 import HomeView from "@/components/Views/client-view/home";
 import CommonLayout from "@/components/Views/client-view/layout";
 import ProjectsView from "@/components/Views/client-view/projects";
-import type { MenuIds } from "@/Types";
+import type { FormDataType, MenuIds } from "@/Types";
 
-async function extractData(section: MenuIds) {
+async function extractData(section: MenuIds): Promise<FormDataType> {
 	const response = await fetch(`http://localhost:3000/api/${section}/get`, {
 		method: "GET",
 		cache: "no-store",
 	});
 
-	return response.json();
+	const data = await response.json();
+	const isDataPresent = data && data.data && Array.isArray(data.data);
+	const cleanData: FormDataType = isDataPresent ? data.data[0] : {};
+	return cleanData;
 }
 
 export default async function Home() {
@@ -22,18 +25,16 @@ export default async function Home() {
 	const educationSectionData = await extractData("education");
 	const projectsSectionData = await extractData("projects");
 
-	console.log("data : ", homeSectionData.data);
-
 	return (
-		<CommonLayout>
+		<CommonLayout className={"bg-neutralBg"}>
 			<div>
-				<HomeView data={homeSectionData.data} />
-				<AboutView data={aboutSectionData.data} />
+				<HomeView data={homeSectionData} />
+				<AboutView data={aboutSectionData} />
 				<ExperienceAndEducationView
-					data={experienceSectionData.data}
-					otherData={educationSectionData.data}
+					data={experienceSectionData}
+					otherData={educationSectionData}
 				/>
-				<ProjectsView data={projectsSectionData.data} />
+				<ProjectsView data={projectsSectionData} />
 				<ContactView />
 			</div>
 		</CommonLayout>
