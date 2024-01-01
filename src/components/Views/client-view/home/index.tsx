@@ -5,13 +5,12 @@ import Image from "next/image";
 import { useMemo, useRef } from "react";
 import type { FC } from "react";
 
+import ProfilePic from "@/../public/mypic-bg-removed.png";
 import type { ClientViewProps } from "@/Types";
 import { getVariants } from "@/utils";
 
 import { socialIcons } from "../../utils";
 import AnimationWrapper from "../wrapper";
-
-import ProfilePic from "@/../public/mypic-bg-removed.png";
 
 interface HomeViewProps extends ClientViewProps {}
 
@@ -30,8 +29,8 @@ const HomeView: FC<HomeViewProps> = ({ data }) => {
 						key={index}
 						className={`${
 							index === 2 || index === 3
-								? "text-primary"
-								: "text-onPrimaryBg"
+								? "text-tertiary"
+								: "text-primary"
 						}`}
 					>
 						{item}{" "}
@@ -84,16 +83,16 @@ const HomeView: FC<HomeViewProps> = ({ data }) => {
 						<motion.div
 							drag
 							dragConstraints={dpContainerRef}
-							className="w-80 h-80 md:w-96 md:h-96 relative rounded-lg bg-primary"
+							className="w-52 h-52 sm:w-80 sm:h-96 md:w-96 md:h-96 relative rounded-lg bg-primary"
 						>
-							<div className="w-80 h-80 md:w-96 md:h-96 top-5 -left-5 rounded-lg border-[6px] border-secondary absolute flex justify-center items-center pl-6 ">
-								<div className="w-56 h-full rounded-[30px] border-6 border-secondary overflow-hidden ">
+							<div className="w-52 h-52 sm:w-80 sm:h-96 md:w-96 md:h-96 top-5 -left-5 rounded-lg border-[6px] border-secondary absolute flex justify-center items-center pl-6 ">
+								<div className="w-full h-full rounded border-6 border-secondary overflow-hidden ">
 									<Image
 										src={ProfilePic}
 										alt="Profile Pic"
-										layout="responsive"
-										quality={100}
-										objectFit="cover"
+										height={450}
+										width={450}
+										priority
 									/>
 									<div className="absolute top-0 left-0 w-full h-full bg-transparent z-10"></div>
 								</div>
