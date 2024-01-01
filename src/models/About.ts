@@ -6,7 +6,7 @@ export interface AboutSchemaDocumentType extends mongoose.Document {
 	noofprojects: number;
 	yearofexperience: number;
 	noofclients: number;
-	skills: [string];
+	skills: string;
 	createdAt: Date;
 	updatedAt: Date;
 }
@@ -38,7 +38,7 @@ const AboutSchema = new Schema<AboutSchemaDocumentType>(
 			default: 0,
 		},
 		skills: {
-			type: [String],
+			type: String,
 			required: true,
 			default: null,
 		},
