@@ -13,7 +13,7 @@ const AnimationWrapper: FC<AnimationWrapperProps> = ({
 }) => {
 	return (
 		<motion.div
-			initial="offscrenn"
+			initial={"offscreen"}
 			whileInView={"onscreen"}
 			viewport={{ once: true, amount: 0.8 }}
 			className={className}
