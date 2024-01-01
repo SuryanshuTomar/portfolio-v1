@@ -2,13 +2,22 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useMemo, type FC } from "react";
+import { useMemo } from "react";
+import type { FC } from "react";
 
 import AboutMeImage from "@/../public/code.svg";
 import type { ClientViewProps } from "@/Types";
 import { getVariants } from "@/utils";
 
 import AnimationWrapper from "../wrapper";
+
+const skillItemVariant = {
+	hidden: { y: 20, opacity: 0 },
+	visible: {
+		y: 0,
+		opacity: 1,
+	},
+};
 
 interface AboutViewProps extends ClientViewProps {}
 
@@ -63,10 +72,10 @@ const AboutView: FC<AboutViewProps> = ({ data }) => {
 						>
 							<div className="flex m-0 w-40 sm:w-auto">
 								<div className="flex flex-col">
-									<p className="text-6xl text-primary font-bold">
+									<p className="text-2xl sm:text-4xl md:text-6xl text-primary font-bold">
 										{infoItem.value}+
 									</p>
-									<p className="text-3xl text-onPrimaryBg font-bold">
+									<p className="text-xl sm:text-2xl md:text-3xl text-onPrimaryBg font-bold">
 										{infoItem.label}
 									</p>
 								</div>
@@ -76,7 +85,7 @@ const AboutView: FC<AboutViewProps> = ({ data }) => {
 				</AnimationWrapper>
 			</div>
 
-			<AnimationWrapper className="pt-5">
+			<AnimationWrapper className="pt-6">
 				<div className="flex flex-col justify-center items-center row-start-2 sm:row-start-1">
 					<h1 className="leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
 						{heading}
@@ -90,21 +99,38 @@ const AboutView: FC<AboutViewProps> = ({ data }) => {
 			<div className="grid grid-flow-row sm:grid-flow-col grid-cols-1 sm:grid-cols-2 gap-8">
 				<AnimationWrapper className="flex w-full">
 					<motion.div
+						className="flex justify-center sm:justify-start h-full w-full p-4"
 						variants={memoisedVariants}
-						className="h-full w-full p-4"
 					>
 						<Image
-							src={AboutMeImage}
+							src={
+								"https://media.giphy.com/media/6ib6KPmkeAjDTxMxij/giphy.gif"
+							}
 							alt="About Me"
-							layout="responsive"
 							quality={100}
-							height={414}
-							width={500}
+							height={425}
+							width={425}
+							className="rounded-lg"
 						/>
 					</motion.div>
 				</AnimationWrapper>
-				<AnimationWrapper className="flex items-center w-full p-4">
-						
+				<AnimationWrapper className="flex justify-center items-center w-full p-4">
+					<motion.div
+						className="flex flex-wrap -m-2"
+						variants={memoisedVariants}
+					>
+						{(data?.skills as string).split(", ").map((skill, idx) => (
+							<motion.div
+								key={idx}
+								className="m-2"
+								variants={skillItemVariant}
+							>
+								<button className="py-2 px-4 border-2 border-primary font-semibold rounded-lg text-sm md:text-xl text-onPrimaryBg tracking-widest hover:shadow-tertiary transition-all overflow-hidden whitespace-nowrap">
+									{skill}
+								</button>
+							</motion.div>
+						))}
+					</motion.div>
 				</AnimationWrapper>
 			</div>
 		</div>
