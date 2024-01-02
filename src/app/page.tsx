@@ -14,7 +14,11 @@ async function extractData(section: MenuIds): Promise<FormDataType> {
 
 	const data = await response.json();
 	const isDataPresent = data && data.data && Array.isArray(data.data);
-	const cleanData: FormDataType = isDataPresent ? data.data[0] : {};
+	const cleanData: FormDataType = isDataPresent
+		? section === "home" || section === "about"
+			? data.data[0]
+			: data.data
+		: {};
 	return cleanData;
 }
 
