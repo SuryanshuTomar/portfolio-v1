@@ -14,21 +14,13 @@ interface CommonLayoutProps extends HTMLAttributes<HTMLDivElement> {
 
 const CommonLayout: FC<CommonLayoutProps> = ({ children, className }) => {
 	const { loading } = useContext(ThemeContext);
-	// Set the current selected tab
 	const [currentSelectedTab, setCurrentSelectedTab] =
 		useState<MenuIds>("home");
-	const [scrollActive, setScrollActive] = useState(false);
-
-	useEffect(() => {
-		window.addEventListener("scroll", () => {
-			setScrollActive(window.screenY > 20);
-		});
-	}, []);
 
 	const content = !loading ? (
 		<div className={className}>
 			<Navbar
-				currentTab="home"
+				currentTab={currentSelectedTab}
 				setCurrentSelectedTab={setCurrentSelectedTab}
 			/>
 			{children}
