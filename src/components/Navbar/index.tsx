@@ -3,6 +3,7 @@ import { useContext } from "react";
 import type { FC, Dispatch, SetStateAction } from "react";
 import { RiMenu5Line } from "react-icons/ri";
 import { RxCross2 } from "react-icons/rx";
+import { Link as LinkScroll } from "react-scroll";
 
 import { menuItems } from "@/app/admin/utils";
 import { AuthContext } from "@/context/authContext";
@@ -34,30 +35,36 @@ export const Navbar: FC<NavbarProps> = ({
 		sessionStorage.removeItem("userAuth");
 	};
 
-	const NavMenuItems = menuItems.map((menuItem) => {
-		const isButtonActiveClass =
-			currentSelectedTab === menuItem.id ? " text-tertiary" : "";
+	const NavMenuItems = () =>
+		menuItems.map((menuItem) => {
+			const isButtonActiveClass =
+				currentSelectedTab === menuItem.id ? " text-tertiary" : "";
 
-		const NavMenuButtonClass =
-			"px-2 font-bold text-xl h-8 hover:bg-secondary hover:text-primary active:text-tertiary rounded-md transition-all " +
-			isButtonActiveClass;
+			const NavMenuButtonClass =
+				"px-2 font-bold text-xl h-8 hover:bg-secondary hover:text-primary active:text-tertiary rounded-md transition-all cursor-pointer" +
+				isButtonActiveClass;
 
-		return (
-			<button
-				key={menuItem.id}
-				type="button"
-				className={NavMenuButtonClass}
-				onClick={() => {
-					setCurrentSelectedTab?.(menuItem.id);
-					setShouldDataUpdate?.(false);
-					resetFormsData?.();
-					setIsMenuOpen(false);
-				}}
-			>
-				{menuItem.label}
-			</button>
-		);
-	});
+			return (
+				<LinkScroll
+					activeClass="active"
+					to={menuItem.id}
+					key={menuItem.id}
+					spy={true}
+					smooth={true}
+					duration={1000}
+					onSetActive={() => setCurrentSelectedTab?.(menuItem.id)}
+					className={NavMenuButtonClass}
+					onClick={() => {
+						setCurrentSelectedTab?.(menuItem.id);
+						setShouldDataUpdate?.(false);
+						resetFormsData?.();
+						setIsMenuOpen(false);
+					}}
+				>
+					{menuItem.label}
+				</LinkScroll>
+			);
+		});
 
 	const button = showButton ? (
 		<NoOutlineButton onClick={handleClick}>Logout</NoOutlineButton>
@@ -92,12 +99,14 @@ export const Navbar: FC<NavbarProps> = ({
 						isMenuOpen ? "absolute" : "hidden"
 					} bg-primaryBg top-20 left-0 -translate-x-1/3 p-2 flex flex-col justify-center items-center rounded-lg`}
 				>
-					{NavMenuItems}
+					<NavMenuItems />
 				</div>
 			</div>
 
 			{/* Show this menu on larger devices */}
-			<div className={"hidden md:flex flex-row"}>{NavMenuItems}</div>
+			<div className={"hidden md:flex flex-row"}>
+				<NavMenuItems />
+			</div>
 
 			{button}
 		</nav>
