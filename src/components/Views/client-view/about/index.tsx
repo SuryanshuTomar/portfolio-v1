@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useMemo } from "react";
 import type { FC } from "react";
 
-import AboutMeImage from "@/../public/code.svg";
+import Heading from "@/components/Heading";
 import type { ClientViewProps } from "@/Types";
 import { getVariants } from "@/utils";
 
@@ -39,19 +39,11 @@ const AboutView: FC<AboutViewProps> = ({ data }) => {
 		},
 	];
 
-	const heading = "Why hire me for your next project?"
-		.split(" ")
-		.map((item, index) => (
-			<span
-				key={index}
-				className={`${index === 6 ? "text-tertiary" : "text-primary"}`}
-			>
-				{item}{" "}
-			</span>
-		));
-
 	return (
-		<div className="max-w-screen-xl mt-24 mb-6 sm:mt-14 px-6 sm:px-8 lg:px-16 mx-auto">
+		<div
+			className="max-w-screen-xl mt-10 mb-6 sm:mt-20 px-6 sm:px-8 lg:px-16 mx-auto"
+			id="about"
+		>
 			<div className="w-full flex">
 				<AnimationWrapper className="w-full grid-flow-row grid grid-cols-1 sm:grid-cols-3 py-9 divide-y-2 sm:divide-y-0 sm:divide-x-2 divide-tertiary bg-white-500 z-10">
 					{aboutDataInfo.map((infoItem, index) => (
@@ -88,7 +80,10 @@ const AboutView: FC<AboutViewProps> = ({ data }) => {
 			<AnimationWrapper className="pt-6">
 				<div className="flex flex-col justify-center items-center row-start-2 sm:row-start-1">
 					<h1 className="leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
-						{heading}
+						<Heading
+							text="Why hire me for your next Project?"
+							highlightIndex={6}
+						/>
 					</h1>
 					<p className="text-secondary mt-4 mb-8 font-bold">
 						{data?.aboutme}
