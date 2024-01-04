@@ -44,7 +44,7 @@ const ThemeToggle = () => {
 	return (
 		<div>
 			{/* Theme toggle button */}
-			<div className="fixed bottom-4 right-4 z-50 " ref={menuRef}>
+			<div className="fixed bottom-4 right-4 z-50" ref={menuRef}>
 				<button
 					id="themeBtn"
 					className={`bg-primaryBg shadow-primary text-onPrimaryBg p-4 rounded-full shadow relative`}
