@@ -38,8 +38,8 @@ export default async function Home() {
 				<HomeView data={homeSectionData as FormDataType} />
 				<AboutView data={aboutSectionData as FormDataType} />
 				<ExperienceView data={experienceSectionData} />
-				<EducationView data={educationSectionData} />
 				<ProjectsView data={projectsSectionData} />
+				<EducationView data={educationSectionData} />
 				<ContactView data={[]} />
 			</div>
 		</CommonLayout>
