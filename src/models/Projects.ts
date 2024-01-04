@@ -4,7 +4,7 @@ import { Schema, model, models } from "mongoose";
 export interface ProjectsSchemaDocumentType extends mongoose.Document {
 	name: string;
 	website: string;
-	technologies: string[];
+	technologies: string;
 	sourcelink: string;
 	createdAt: Date;
 	updatedAt: Date;
@@ -26,7 +26,7 @@ const ProjectsSchema = new Schema<ProjectsSchemaDocumentType>(
 			required: true,
 		},
 		technologies: {
-			type: [String],
+			type: String,
 			required: true,
 		},
 		sourcelink: {
