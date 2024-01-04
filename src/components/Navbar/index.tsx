@@ -97,7 +97,7 @@ export const Navbar: FC<NavbarProps> = ({
 				<div
 					className={`${
 						isMenuOpen ? "absolute" : "hidden"
-					} bg-primaryBg top-20 left-0 -translate-x-1/3 p-2 flex flex-col justify-center items-center rounded-lg`}
+					} bg-primaryBg top-20 left-0 -translate-x-1/3 p-2 flex flex-col justify-center items-center rounded-lg z-50`}
 				>
 					<NavMenuItems />
 				</div>
