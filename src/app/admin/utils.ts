@@ -23,14 +23,14 @@ export const menuItems: MenuItem[] = [
 		component: AdminExperienceView,
 	},
 	{
-		id: "education",
-		label: "Education",
-		component: AdminEducationView,
-	},
-	{
 		id: "projects",
 		label: "Projects",
 		component: AdminProjectsView,
+	},
+	{
+		id: "education",
+		label: "Education",
+		component: AdminEducationView,
 	},
 	{
 		id: "contact",
