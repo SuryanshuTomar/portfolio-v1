@@ -6,13 +6,15 @@ import { useMemo, useRef } from "react";
 import type { FC } from "react";
 
 import ProfilePic from "@/../public/mypic-bg-removed.png";
-import type { ClientViewProps } from "@/Types";
+import type { ClientViewProps, FormDataType } from "@/Types";
 import { getVariants } from "@/utils";
 
 import { socialIcons } from "../../utils";
 import AnimationWrapper from "../wrapper";
 
-interface HomeViewProps extends ClientViewProps {}
+interface HomeViewProps extends ClientViewProps {
+	data: FormDataType;
+}
 
 const HomeView: FC<HomeViewProps> = ({ data }) => {
 	const dpContainerRef = useRef<HTMLDivElement>(null);

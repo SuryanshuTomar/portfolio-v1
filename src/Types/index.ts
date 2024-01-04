@@ -72,6 +72,5 @@ export interface AuthContextState {
 }
 
 export interface ClientViewProps {
-	data?: FormDataType;
-	otherData?: FormDataType;
+	data: FormDataType | FormDataType[];
 }
