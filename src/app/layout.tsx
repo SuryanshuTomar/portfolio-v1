@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import "./globals.css";
+import ScrollTopButton from "@/components/Buttons/ScrollTopButton";
 import ThemeToggle from "@/components/Buttons/ThemeToggle";
 import { AuthContextProviderComp } from "@/context/authContext";
 import { ThemeContextProviderComp } from "@/context/themeContext";
@@ -24,6 +25,7 @@ export default function RootLayout({
 				<ThemeContextProviderComp>
 					<AuthContextProviderComp>
 						{children}
+						<ScrollTopButton />
 						<ThemeToggle />
 					</AuthContextProviderComp>
 				</ThemeContextProviderComp>
