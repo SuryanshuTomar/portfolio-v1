@@ -70,10 +70,10 @@ const ProjectsView: FC<ProjectsViewProps> = ({ data }) => {
 										<div className="mx-4 w-36 sm:48 md:w-96 flex p-4 flex-col xl:flex-row items-center xl:items-center">
 											<div className=" flex order-2 xl:order-1">
 												<div className="flex flex-col">
-													<h3 className="text-lg md:text-xl xl:text-2xl capitalize font-extrabold">
+													<h3 className="text-lg md:text-xl xl:text-2xl capitalize font-extrabold text-primary">
 														{item.name}
 													</h3>
-													<p className="text-sm capitalize font-bold">
+													<p className="text-sm capitalize font-bold text-secondary">
 														{
 															(item.createdAt as string).split(
 																"T"
