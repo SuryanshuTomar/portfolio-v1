@@ -6,7 +6,7 @@ import { useMemo } from "react";
 import type { FC } from "react";
 
 import Heading from "@/components/Heading";
-import type { ClientViewProps } from "@/Types";
+import type { ClientViewProps, FormDataType } from "@/Types";
 import { getVariants } from "@/utils";
 
 import AnimationWrapper from "../wrapper";
@@ -19,7 +19,9 @@ const skillItemVariant = {
 	},
 };
 
-interface AboutViewProps extends ClientViewProps {}
+interface AboutViewProps extends ClientViewProps {
+	data: FormDataType;
+}
 
 const AboutView: FC<AboutViewProps> = ({ data }) => {
 	const memoisedVariants = useMemo(() => getVariants(), []);
