@@ -21,8 +21,8 @@ const EducationView: FC<EducationViewProps> = ({ data: educationData }) => {
 			id="education"
 		>
 			<div className="grid grid-flow-row sm:grid-flow-col grid-cols-1  gap-8">
-				<div className="flex flex-col gap-5">
-					<AnimationWrapper className={"py-6 sm:py-16"}>
+				<div className="flex flex-col sm:gap-5">
+					<AnimationWrapper className="pt-2 sm:py-10">
 						<motion.div
 							variants={memoisedVariants}
 							className="flex flex-col justify-center items-center row-start-2 sm:row-start-1"

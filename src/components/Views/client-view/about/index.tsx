@@ -79,7 +79,7 @@ const AboutView: FC<AboutViewProps> = ({ data }) => {
 				</AnimationWrapper>
 			</div>
 
-			<AnimationWrapper className="pt-6">
+			<AnimationWrapper className="pt-2 sm:py-10">
 				<div className="flex flex-col justify-center items-center row-start-2 sm:row-start-1">
 					<h1 className="leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
 						<Heading

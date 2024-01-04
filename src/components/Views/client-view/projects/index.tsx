@@ -26,10 +26,10 @@ const ProjectsView: FC<ProjectsViewProps> = ({ data }) => {
 			className="max-w-screen-xl mt-10 mb-6 sm:mt-20 px-6 sm:px-8 lg:px-16 mx-auto"
 			id="projects"
 		>
-			<AnimationWrapper className="py-6 sm:py-16">
+			<AnimationWrapper className="pt-2 sm:py-10">
 				<motion.div
 					variants={memoisedVariants}
-					className="flex flex-col justify-center items-center row-start-2 sm:row-start-1"
+					className="flex flex-col justify-center items-center row-start-2 sm:row-start-1 mb-4"
 				>
 					<h1 className="leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
 						<Heading text="My Projects" highlightIndex={1} />
