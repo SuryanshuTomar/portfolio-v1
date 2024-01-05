@@ -116,7 +116,7 @@ const AboutView: FC<AboutViewProps> = ({ data }) => {
 						className="flex flex-wrap -m-2"
 						variants={memoisedVariants}
 					>
-						{(data?.skills as string).split(", ").map((skill, idx) => (
+						{(data?.skills as string)?.split(", ").map((skill, idx) => (
 							<motion.div
 								key={idx}
 								className="m-2"
