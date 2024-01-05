@@ -7,10 +7,13 @@ import CommonLayout from "@/components/Views/client-view/layout";
 import ProjectsView from "@/components/Views/client-view/projects";
 import type { FormDataType, MenuIds } from "@/Types";
 
+export const runtime = "edge";
+
 async function extractData(
 	section: MenuIds
 ): Promise<FormDataType | FormDataType[]> {
-	const response = await fetch(`http://localhost:3000/api/${section}/get`, {
+	const fetchURI = process.env.FETCH_URI;
+	const response = await fetch(`${fetchURI}/${section}/get`, {
 		method: "GET",
 		cache: "no-store",
 	});
