@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import "./globals.css";
+
 import ScrollTopButton from "@/components/Buttons/ScrollTopButton";
 import ThemeToggle from "@/components/Buttons/ThemeToggle";
 import { AuthContextProviderComp } from "@/context/authContext";
@@ -24,9 +25,9 @@ export default function RootLayout({
 			<body className={`${inter.className} no-scrollbar`}>
 				<ThemeContextProviderComp>
 					<AuthContextProviderComp>
-						{children}
 						<ScrollTopButton />
 						<ThemeToggle />
+						{children}
 					</AuthContextProviderComp>
 				</ThemeContextProviderComp>
 			</body>

@@ -51,12 +51,6 @@ export default function AdminView() {
 		useState<FormDataType>(initialEducationFormData);
 	const [projectsViewFormData, setProjectsViewFormData] =
 		useState<FormDataType>(initialProjectsFormData);
-	const [contactViewFormData, setContactViewFormData] = useState<FormDataType>(
-		{
-			email: "",
-			contactInfo: "",
-		}
-	);
 
 	const getFormData = (id: MenuIds) => {
 		let result = homeViewFormData;
@@ -75,9 +69,6 @@ export default function AdminView() {
 				break;
 			case "projects":
 				result = projectsViewFormData;
-				break;
-			case "contact":
-				result = contactViewFormData;
 				break;
 		}
 		return result;
@@ -101,9 +92,6 @@ export default function AdminView() {
 			case "projects":
 				result = setProjectsViewFormData;
 				break;
-			case "contact":
-				result = setContactViewFormData;
-				break;
 		}
 		return result;
 	};
@@ -115,10 +103,6 @@ export default function AdminView() {
 		setExperienceViewFormData(initialExperienceFormData);
 		setEducationViewFormData(initialEducationFormData);
 		setProjectsViewFormData(initialProjectsFormData);
-		setContactViewFormData({
-			email: "",
-			contactInfo: "",
-		});
 	}
 
 	// This function will get the selected tab data and save it to the allTabsData state.

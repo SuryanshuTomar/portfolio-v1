@@ -3,7 +3,7 @@
 import type { HTMLAttributes, FC, ReactNode } from "react";
 
 interface ViewContainerProps extends HTMLAttributes<HTMLDivElement> {
-	children: ReactNode;
+	children?: ReactNode;
 }
 
 const ViewContainer: FC<ViewContainerProps> = ({ children, className }) => {

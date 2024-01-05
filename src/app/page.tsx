@@ -34,14 +34,12 @@ export default async function Home() {
 
 	return (
 		<CommonLayout className={"bg-neutralBg"}>
-			<div>
-				<HomeView data={homeSectionData as FormDataType} />
-				<AboutView data={aboutSectionData as FormDataType} />
-				<ExperienceView data={experienceSectionData} />
-				<ProjectsView data={projectsSectionData} />
-				<EducationView data={educationSectionData} />
-				<ContactView data={[]} />
-			</div>
+			<HomeView data={homeSectionData as FormDataType} />
+			<AboutView data={aboutSectionData as FormDataType} />
+			<ExperienceView data={experienceSectionData} />
+			<ProjectsView data={projectsSectionData} />
+			<EducationView data={educationSectionData} />
+			<ContactView data={[]} />
 		</CommonLayout>
 	);
 }
