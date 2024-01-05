@@ -25,44 +25,52 @@ interface TimeLineProps {
 const TimeLine = ({ data, card, position }: TimeLineProps) => {
 	const { width: windowWidth } = useWindowSize();
 
-	const content =
-		data !== null &&
-		data !== undefined &&
-		Array.isArray(data) &&
-		windowWidth > 625 ? (
-			<Timeline position={position}>
-				{data.map((dataItem) => (
-					<TimelineItem key={dataItem._id}>
-						<TimelineSeparator>
-							<TimelineDot
-								className="bg-tertiary"
-								color="inherit"
-								sx={{
-									width: "15px",
-									height: "15px",
-								}}
-							/>
-							<TimelineConnector />
-						</TimelineSeparator>
-						<TimelineContent>
-							{card === "education" ? (
-								<TimelineEducationCard dataItem={dataItem} />
-							) : (
-								<TimelineExperienceCard dataItem={dataItem} />
-							)}
-						</TimelineContent>
-					</TimelineItem>
-				))}
-			</Timeline>
-		) : (
-			data.map((dataItem) =>
-				card === "education" ? (
-					<TimelineEducationCard key={dataItem._id} dataItem={dataItem} />
-				) : (
-					<TimelineExperienceCard key={dataItem._id} dataItem={dataItem} />
+	let content;
+	if (data !== null && data !== undefined && Array.isArray(data)) {
+		content =
+			windowWidth > 625 ? (
+				<Timeline position={position}>
+					{data.map((dataItem) => (
+						<TimelineItem key={dataItem._id}>
+							<TimelineSeparator>
+								<TimelineDot
+									className="bg-tertiary"
+									color="inherit"
+									sx={{
+										width: "15px",
+										height: "15px",
+									}}
+								/>
+								<TimelineConnector />
+							</TimelineSeparator>
+							<TimelineContent>
+								{card === "education" ? (
+									<TimelineEducationCard dataItem={dataItem} />
+								) : (
+									<TimelineExperienceCard dataItem={dataItem} />
+								)}
+							</TimelineContent>
+						</TimelineItem>
+					))}
+				</Timeline>
+			) : (
+				data.map((dataItem) =>
+					card === "education" ? (
+						<TimelineEducationCard
+							key={dataItem._id}
+							dataItem={dataItem}
+						/>
+					) : (
+						<TimelineExperienceCard
+							key={dataItem._id}
+							dataItem={dataItem}
+						/>
+					)
 				)
-			)
-		);
+			);
+	} else {
+		content = undefined;
+	}
 
 	return content;
 };
