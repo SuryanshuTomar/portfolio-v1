@@ -41,14 +41,14 @@ const ProjectsView: FC<ProjectsViewProps> = ({ data }) => {
 							cy="50"
 							fill="transparent"
 							className="stroke-primaryBg"
-							stroke-width="12px"
+							strokeWidth="12px"
 						></circle>
 						<motion.circle
 							r="40"
 							cx="50"
 							cy="50"
 							fill="transparent"
-							stroke-width="12px"
+							strokeWidth="12px"
 							className="stroke-onPrimaryBg"
 							style={{ pathLength: scrollXProgress }}
 						></motion.circle>
