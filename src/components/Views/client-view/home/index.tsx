@@ -73,7 +73,9 @@ const HomeView: FC<HomeViewProps> = ({ data }) => {
 										borderRadius: "100%",
 									}}
 								>
-									{item.icon}
+									<a href={item.url} target="_blank">
+										{item.icon}
+									</a>
 								</motion.div>
 							))}
 						</motion.div>
