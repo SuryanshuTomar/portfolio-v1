@@ -13,7 +13,14 @@ interface CommonLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const CommonLayout: FC<CommonLayoutProps> = ({ children, className }) => {
-	const { loading } = useContext(ThemeContext);
+	const { loading } = useContext(
+		ThemeContext ?? {
+			theme: ["theme-type-1", () => {}],
+			mode: ["theme-light", () => {}],
+			loading: true,
+		}
+	);
+
 	const [currentSelectedTab, setCurrentSelectedTab] =
 		useState<MenuIds>("home");
 
