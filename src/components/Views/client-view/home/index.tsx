@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useMemo, useRef } from "react";
 import type { FC } from "react";
 
-import ProfilePic from "@/../public/mypic-bg-removed.png";
+import ProfilePic from "@/assets/mypic-bg-removed.png";
 import type { ClientViewProps, FormDataType } from "@/Types";
 import { getVariants } from "@/utils";
 
@@ -20,7 +20,6 @@ const HomeView: FC<HomeViewProps> = ({ data }) => {
 	const dpContainerRef = useRef<HTMLDivElement>(null);
 	const memoisedVariants = useMemo(() => getVariants(), []);
 
-	// const isDataPresent = data && Array.isArray(data);
 	const headingData = data?.heading;
 	const summaryData = data?.summary;
 
@@ -92,7 +91,7 @@ const HomeView: FC<HomeViewProps> = ({ data }) => {
 							<div className="w-52 h-52 sm:w-80 sm:h-96 md:w-96 md:h-96 top-5 -left-5 rounded-lg border-[6px] border-secondary absolute flex justify-center items-center pl-6 ">
 								<div className="w-full h-full rounded border-6 border-secondary overflow-hidden ">
 									<Image
-										src={ProfilePic}
+										src={ProfilePic.src}
 										alt="Profile Pic"
 										height={450}
 										width={450}
