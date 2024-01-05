@@ -1,8 +1,7 @@
-import config from "config";
 import mongoose from "mongoose";
 
 export default async function connectDb(): Promise<void> {
-	const dbUri = config.get<string>("dbUri");
+	const dbUri = process.env.DB_URI ?? "";
 
 	try {
 		await mongoose.connect(dbUri);
